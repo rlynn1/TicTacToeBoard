@@ -25,7 +25,7 @@ TEST(TicTacToeBoardTest, sanityCheck)
 TEST(TicTacToeBoardTest, turnXThenO)
 {
   TicTacToeBoard obj;
-  ASSERT_TRUE(obj.toggleTurn=='O');
+  ASSERT_TRUE(obj.toggleTurn()==O);
 }
 
 //Check if turn toggles properly second time.
@@ -33,77 +33,77 @@ TEST(TicTacToeBoardTest, turnOThenX)
 {
   TicTacToeBoard obj;
   obj.toggleTurn();
-  ASSERT_TRUE(obj.toggleTurn()=='X');
+  ASSERT_TRUE(obj.toggleTurn()==X);
 }
 
 //Ensure turn is not Invalid.
 TEST(TicTacToeBoardTest, turnNotInvalid)
 {
   TicTacToeBoard obj;
-  ASSERT_FALSE(obj.toggleTurn=='?');
+  ASSERT_FALSE(obj.toggleTurn()==Invalid);
 }
 
 //Ensure turn is not Blank.
 TEST(TicTacToeBoardTest, turnNotBlank)
 {
   TicTacToeBoard obj;
-  ASSERT_FALSE(obj.toggleTurn==' ');
+  ASSERT_FALSE(obj.toggleTurn()==Blank);
 }
 
 //Check get piece on blank.
 TEST(TicTacToeBoardTest, getPieceBlank)
 {
   TicTacToeBoard obj;
-  ASSERT_TRUE(obj.getPiece(0,0)==' ');
+  ASSERT_TRUE(obj.getPiece(0,0)==Blank);
 }
 
 //Check get piece below row.
 TEST(TicTacToeBoardTest, getPieceBelowRow)
 {
   TicTacToeBoard obj;
-  ASSERT_TRUE(obj.getPiece(-1,0)=='?');
+  ASSERT_TRUE(obj.getPiece(-1,0)==Invalid);
 }
 
 //Check get piece below column.
 TEST(TicTacToeBoardTest, getPieceBelowColumn)
 {
   TicTacToeBoard obj;
-  ASSERT_TRUE(obj.getPiece(0,-1)=='?');
+  ASSERT_TRUE(obj.getPiece(0,-1)==Invalid);
 }
 
 //Check get piece below row and column.
 TEST(TicTacToeBoardTest, getPieceBelowBoth)
 {
   TicTacToeBoard obj;
-  ASSERT_TRUE(obj.getPiece(-1,-1)=='?');
+  ASSERT_TRUE(obj.getPiece(-1,-1)==Invalid);
 }
 
 //Check get piece above row.
 TEST(TicTacToeBoardTest, getPieceAboveRow)
 {
   TicTacToeBoard obj;
-  ASSERT_TRUE(obj.getPiece(3,0)=='?');
+  ASSERT_TRUE(obj.getPiece(3,0)==Invalid);
 }
 
 //Check get piece above column.
 TEST(TicTacToeBoardTest, getPieceAboveColumn)
 {
   TicTacToeBoard obj;
-  ASSERT_TRUE(obj.getPiece(0,3)=='?');
+  ASSERT_TRUE(obj.getPiece(0,3)==Invalid);
 }
 
 //Check get piece above row and column.
 TEST(TicTacToeBoardTest, getPieceAboveBoth)
 {
   TicTacToeBoard obj;
-  ASSERT_TRUE(obj.getPiece(3,3)=='?');
+  ASSERT_TRUE(obj.getPiece(3,3)==Invalid);
 }
 
 //Check if X is placed correctly.
 TEST(TicTacToeBoardTest, placeXInBounds)
 {
   TicTacToeBoard obj;
-  ASSERT_TRUE(obj.placePiece(0,0)=='X');
+  ASSERT_TRUE(obj.placePiece(0,0)==X);
 }
 
 //Check get piece on X.
@@ -111,7 +111,15 @@ TEST(TicTacToeBoardTest, getPieceOnX)
 {
   TicTacToeBoard obj;
   obj.placePiece(0,0);
-  ASSERT_TRUE(obj.getPiece(0,0)=='X');
+  ASSERT_TRUE(obj.getPiece(0,0)==X);
+}
+
+//Check if O is placed correctly.
+TEST(TicTacToeBoardTest, placeOInBounds)
+{
+  TicTacToeBoard obj;
+  obj.toggleTurn();
+  ASSERT_TRUE(obj.placePiece(0,0)==O);
 }
 
 //Check get piece on O.
@@ -120,71 +128,63 @@ TEST(TicTacToeBoardTest, getPieceOnO)
   TicTacToeBoard obj;
   obj.toggleTurn();
   obj.placePiece(0,0);
-  ASSERT_TRUE(obj.getPiece(0,0)=='O');
-}
-
-//Check if O is placed correctly.
-TEST(TicTacToeBoardTest, placeOInBounds)
-{
-  TicTacToeBoard obj;
-  obj.toggleTurn();
-  ASSERT_TRUE(obj.placePiece(0,0)=='O');
+  ASSERT_TRUE(obj.getPiece(0,0)==O);
 }
 
 //Check place piece below bounds on Row.
 TEST(TicTacToeBoardTest, placePieceBelowBoundsOnRow)
 {
   TicTacToeBoard obj;
-  ASSERT_TRUE(obj.placePiece(-1,0)=='?');
+  ASSERT_TRUE(obj.placePiece(-1,0)==Invalid);
 }
 
 //Check place piece below bounds on Column.
 TEST(TicTacToeBoardTest, placePieceBelowBoundsOnColumn)
 {
   TicTacToeBoard obj;
-  ASSERT_TRUE(obj.placePiece(0,-1)=='?');
+  ASSERT_TRUE(obj.placePiece(0,-1)==Invalid);
 }
 
 //Check place piece below bounds on Row and Column.
 TEST(TicTacToeBoardTest, placePieceBelowBoundsOnBoth)
 {
   TicTacToeBoard obj;
-  ASSERT_TRUE(obj.placePiece(-1,-1)=='?');
+  ASSERT_TRUE(obj.placePiece(-1,-1)==Invalid);
 }
 
 //Check place piece above bounds on Row.
 TEST(TicTacToeBoardTest, placePieceAboveBoundsOnRow)
 {
   TicTacToeBoard obj;
-  ASSERT_TRUE(obj.placePiece(3,0)=='?');
+  ASSERT_TRUE(obj.placePiece(3,0)==Invalid);
 }
 
 //Check place piece above bounds on Column.
 TEST(TicTacToeBoardTest, placePieceAboveBoundsOnColumn)
 {
   TicTacToeBoard obj;
-  ASSERT_TRUE(obj.placePiece(0,3)=='?');
+  ASSERT_TRUE(obj.placePiece(0,3)==Invalid);
 }
 
 //Check place piece above bounds on Row and Column.
 TEST(TicTacToeBoardTest, placePieceAboveBoundsOnBoth)
 {
   TicTacToeBoard obj;
-  ASSERT_TRUE(obj.placePiece(3,3)=='?');
+  ASSERT_TRUE(obj.placePiece(3,3)==Invalid);
 }
 
 //Check place piece below bounds on Row and above on Column.
 TEST(TicTacToeBoardTest, placePieceBelowRowAboveColumn)
 {
   TicTacToeBoard obj;
-  ASSERT_TRUE(obj.placePiece(-1,3)=='?');
+  ASSERT_TRUE(obj.placePiece(-1,3)==Invalid);
 }
 
 //Check place piece above bounds on Row and below on Column.
 TEST(TicTacToeBoardTest, placePieceAboveRowBelowColumn)
 {
   TicTacToeBoard obj;
-  ASSERT_TRUE(obj.placePiece(3,-1)=='?');
+  ASSERT_TRUE(obj.placePiece(3,-1)==Invalid);
 }
 
 //Check place piece on existing piece returns existing piece.
@@ -192,11 +192,11 @@ TEST(TicTacToeBoardTest, placePieceOnPiece)
 {
   TicTacToeBoard obj;
   obj.placePiece(0,0);
-  ASSERT_TRUE(obj.placePiece(0,0)=='X');
+  ASSERT_TRUE(obj.placePiece(0,0)==X);
 }
 
-//Check place piece on piece after win doesn't change turn.
-TEST(TicTacToeBoardTest, placePieceOnPieceAfterWin)
+//Check place piece on Blank after win doesn't change turn and should return blank.
+TEST(TicTacToeBoardTest, placePieceOnBlankAfterWin)
 {
   TicTacToeBoard obj;
   obj.placePiece(0,0);
@@ -204,7 +204,7 @@ TEST(TicTacToeBoardTest, placePieceOnPieceAfterWin)
   obj.placePiece(1,0);
   obj.placePiece(1,2);
   obj.placePiece(2,0);
-  ASSERT_TRUE(obj.placePiece(2,2)=='X');
+  ASSERT_TRUE(obj.placePiece(2,2)==Blank);
 }
 
 //Check getWinner returns win on finished game on not full board.
@@ -216,7 +216,7 @@ TEST(TicTacToeBoardTest, getWinnerOnWinNotFull)
   obj.placePiece(1,0);
   obj.placePiece(1,2);
   obj.placePiece(2,0);
-  ASSERT_TRUE(obj.getWinner()=='X');
+  ASSERT_TRUE(obj.getWinner()==X);
 }
 
 //Check getWinner returns win on finished game with full board.
@@ -232,7 +232,7 @@ TEST(TicTacToeBoardTest, getWinnerOnWinFull)
   obj.placePiece(1,1);
   obj.placePiece(2,1);
   obj.placePiece(2,2);
-  ASSERT_TRUE(obj.getWinner()=='X');
+  ASSERT_TRUE(obj.getWinner()==X);
 }
 
 //Check getWinner returns Invalid on unfinished game on not full board.
@@ -243,7 +243,7 @@ TEST(TicTacToeBoardTest, getWinnerOnNoWinNotFull)
   obj.placePiece(0,2);
   obj.placePiece(1,0);
   obj.placePiece(1,2);
-  ASSERT_TRUE(obj.getWinner()=='?');
+  ASSERT_TRUE(obj.getWinner()==Invalid);
 }
 
 //Check getWinner returns Blank on finished game with full board, no winners.
@@ -259,5 +259,5 @@ TEST(TicTacToeBoardTest, getWinnerOnNoWinFull)
   obj.placePiece(1,2);
   obj.placePiece(2,1);
   obj.placePiece(2,2);
-  ASSERT_TRUE(obj.getWinner()==' ');
+  ASSERT_TRUE(obj.getWinner()==Blank);
 }
