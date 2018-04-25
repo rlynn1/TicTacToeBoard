@@ -207,6 +207,90 @@ TEST(TicTacToeBoardTest, placePieceOnBlankAfterWin)
   ASSERT_TRUE(obj.placePiece(2,2)==Blank);
 }
 
+//Check that getWinner succesfully recognizes win on top row.
+TEST(TicTacToeBoardTest, topRowWin)
+{
+  TicTacToeBoard obj;
+  obj.placePiece(0,0);
+  obj.placePiece(1,2);
+  obj.placePiece(0,1);
+  obj.placePiece(1,1);
+  obj.placePiece(0,2);
+  ASSERT_TRUE(obj.getWinner()==X);
+}
+
+//Check that getWinner succesfully recognizes win on bottom row.
+TEST(TicTacToeBoardTest, bottomRowWin)
+{
+  TicTacToeBoard obj;
+  obj.placePiece(2,0);
+  obj.placePiece(1,2);
+  obj.placePiece(2,1);
+  obj.placePiece(1,1);
+  obj.placePiece(2,2);
+  ASSERT_TRUE(obj.getWinner()==X);
+}
+
+//Check that getWinner succesfully recognizes win on middle row.
+TEST(TicTacToeBoardTest, midRowWin)
+{
+  TicTacToeBoard obj;
+  obj.placePiece(1,0);
+  obj.placePiece(0,2);
+  obj.placePiece(1,1);
+  obj.placePiece(0,1);
+  obj.placePiece(1,2);
+  ASSERT_TRUE(obj.getWinner()==X);
+}
+
+//Check that getWinner succesfully recognizes win on middle column.
+TEST(TicTacToeBoardTest, midColWin)
+{
+  TicTacToeBoard obj;
+  obj.placePiece(0,1);
+  obj.placePiece(1,2);
+  obj.placePiece(1,1);
+  obj.placePiece(0,0);
+  obj.placePiece(2,1);
+  ASSERT_TRUE(obj.getWinner()==X);
+}
+
+//Check that getWinner succesfully recognizes win on right column.
+TEST(TicTacToeBoardTest, rightColWin)
+{
+  TicTacToeBoard obj;
+  obj.placePiece(0,2);
+  obj.placePiece(1,1);
+  obj.placePiece(1,2);
+  obj.placePiece(0,0);
+  obj.placePiece(2,2);
+  ASSERT_TRUE(obj.getWinner()==X);
+}
+
+//Check that getWinner succesfully recognizes win on back diagonal.
+TEST(TicTacToeBoardTest, backDiagonalWin)
+{
+  TicTacToeBoard obj;
+  obj.placePiece(0,0);
+  obj.placePiece(0,1);
+  obj.placePiece(1,1);
+  obj.placePiece(0,2);
+  obj.placePiece(2,2);
+  ASSERT_TRUE(obj.getWinner()==X);
+}
+
+//Check that getWinner succesfully recognizes win on forward diagonal.
+TEST(TicTacToeBoardTest, forDiagonalWin)
+{
+  TicTacToeBoard obj;
+  obj.placePiece(0,2);
+  obj.placePiece(1,2);
+  obj.placePiece(1,1);
+  obj.placePiece(0,0);
+  obj.placePiece(2,0);
+  ASSERT_TRUE(obj.getWinner()==X);
+}
+
 //Check getWinner returns win on finished game on not full board.
 TEST(TicTacToeBoardTest, getWinnerOnWinNotFull)
 {
@@ -252,12 +336,12 @@ TEST(TicTacToeBoardTest, getWinnerOnNoWinFull)
   TicTacToeBoard obj;
   obj.placePiece(0,0);
   obj.placePiece(0,2);
-  obj.placePiece(1,0);
-  obj.placePiece(2,0);
   obj.placePiece(0,1);
-  obj.placePiece(1,1);
+  obj.placePiece(1,0);
   obj.placePiece(1,2);
-  obj.placePiece(2,1);
+  obj.placePiece(1,1);
   obj.placePiece(2,2);
+  obj.placePiece(2,1);
+  obj.placePiece(2,0);
   ASSERT_TRUE(obj.getWinner()==Blank);
 }
